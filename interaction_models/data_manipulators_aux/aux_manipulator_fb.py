@@ -1,16 +1,17 @@
 """Module to receive text and maniputlate it"""
-from typing import List
-
+from typing import Dict
+from constants import INFORMATIONS
 from interaction_models.data_manipulators_aux.aux_manipulator import AuxManipulator
 
 
 class AuxManipulatorFb(AuxManipulator):
     @staticmethod
     def cleanhtml(raw_html: str):
-        """Transform the html.
+        """cleaning up html.
         :param str raw_html: information font, the raw html to be clean"""
 
         import re
+
         texto = raw_html.prettify()
         clean_html = re.sub(re.compile("</div>"), "##", texto)
         clean_html = re.sub(re.compile("</.*?>"), "", clean_html)
@@ -24,7 +25,6 @@ class AuxManipulatorFb(AuxManipulator):
     def split_text_to_dict(self, text: str):
         """Split the text in blocks, transforming in dict
         :param str text: information font, the raw html"""
-
         informations_list = text.split("##")
         companie_dict = {}
         for block in informations_list:
@@ -38,7 +38,15 @@ class AuxManipulatorFb(AuxManipulator):
                 companie_dict[key] = value
         return companie_dict
 
-    def return_company_information(self, companie_data) -> List:
-        companie_information = self.cleanhtml(companie_data)
-        companie_information = self.split_text_to_dict(companie_information)
-        return companie_information
+    def are_there_all_informations(self, companie_dict: Dict):
+        """checks if we have all necessaries informations"""
+        for key in INFORMATIONS:
+            if key not in companie_dict.keys():
+                companie_dict[key] = "Não consta"
+        return companie_dict
+
+    def return_company_information(self, companie_data) -> Dict:
+        company_information = self.cleanhtml(companie_data)
+        company_information = self.split_text_to_dict(company_information)
+        company_information = self.are_there_all_informations(company_information)
+        return company_information

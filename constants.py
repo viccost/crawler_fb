@@ -1,5 +1,13 @@
 from dotenv import load_dotenv
 from os import getenv
+from selenium.common.exceptions import (
+    ElementNotInteractableException,
+    TimeoutException,
+    NoSuchElementException,
+    StaleElementReferenceException,
+    ElementClickInterceptedException,
+)
+from selenium.webdriver.support import expected_conditions as ec
 
 load_dotenv()
 
@@ -11,3 +19,29 @@ HEADER = {
 MAX_PAGE = 712
 URL = getenv("URL")
 
+COMMONS_EXCEPTIONS = (
+    ec.NoSuchElementException,
+    ElementNotInteractableException,
+    TimeoutException,
+    NoSuchElementException,
+    StaleElementReferenceException,
+    ElementClickInterceptedException,
+)
+
+INFORMATIONS = [
+    "Nome Fantasia",
+    "CNPJ",
+    "Inscrição Estadual",
+    "Telefones",
+    "E-mail",
+    "Site",
+    "Atividade Econômica",
+    "Lista de Produtos",
+    "Lista de Insumos",
+    "Número total de Funcionários",
+    "Logradouro",
+    "Bairro",
+    "Estado",
+    "Município",
+    "CEP",
+]

@@ -23,17 +23,51 @@ def main():
     chrome.get(URL)
     our_interaction = interaction_model(chrome)
 
-    for page in range(MAX_PAGE):
-        cont += 1
-        print(cont)
+    for page in range(1, MAX_PAGE):
+        print(page)
 
-        result = our_interaction.initiate()
+        result = our_interaction.initiate(page)
 
         if result != 0:
-            output.add_collected_data()
+            for company_information in result["data"]:
+                nome_fantasia = company_information["Nome Fantasia"]
+                cnpj = company_information["CNPJ"]
+                inscricao_estadual = company_information["Inscrição Estadual"]
+                telefones = company_information["Telefones"]
+                email = company_information["E-mail"]
+                site = company_information["Site"]
+                atividade_economica = company_information["Atividade Econômica"]
+                lista_produtos = company_information["Lista de Produtos"]
+                lista_insumos = company_information["Lista de Insumos"]
+                num_funcionarios = company_information["Número total de Funcionários"]
+                logradouro = company_information["Logradouro"]
+                bairro = company_information["Bairro"]
+                municipio = company_information["Município"]
+                estado = company_information["Estado"]
+                cep = company_information["CEP"]
+
+                output.add_collected_data(
+                    nome_fantasia,
+                    cnpj,
+                    inscricao_estadual,
+                    telefones,
+                    email,
+                    site,
+                    atividade_economica,
+                    lista_produtos,
+                    lista_insumos,
+                    num_funcionarios,
+                    logradouro,
+                    bairro,
+                    estado,
+                    municipio,
+                    cep,
+                    page,
+                )
         else:
-            # output.add_url_error()
+            output.add_url_error()
             print("Ocorreu um erro")
+
         our_interaction.next_page(page)
 
     output.save_collected_data()

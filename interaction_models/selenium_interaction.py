@@ -11,17 +11,7 @@ class SeleniumInteraction(metaclass=abc.ABCMeta):
         self.browser = browser
 
     @abc.abstractmethod
-    def get_companies_details(self, *args) -> None:
-        """Fill the cep input field. Or pass the information by some way"""
-        ...
-
-    @abc.abstractmethod
-    def next_page(self, *args) -> None:
-        """Fill the cep input field. Or pass the information by some way"""
-        ...
-
-    @abc.abstractmethod
-    def initiate(self) -> Dict:
+    def initiate(self, *args) -> Dict:
         """Must be used to call all another methods
 
         Returns:

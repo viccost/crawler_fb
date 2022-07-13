@@ -2,7 +2,6 @@ from selenium import webdriver
 
 
 class ChromeOptions:
-
     def __init__(self):
         self.__chrome_options = webdriver.ChromeOptions()
         self.__chrome_options.add_argument("--disable-notifications")
@@ -16,19 +15,26 @@ class ChromeOptions:
                 "download.directory_upgrade": True,
                 "safebrowsing_for_trusted_sources_enabled": False,
                 "safebrowsing.enabled": False,
-                'profile.default_content_setting_values': {'images': 2,
-                                                           'geolocation': 2,
-                                                           'notifications': 2, 'auto_select_certificate': 2,
-                                                           'fullscreen': 2,
-                                                           'mouselock': 2, 'media_stream': 2,
-                                                           'media_stream_mic': 2, 'media_stream_camera': 2,
-                                                           'protocol_handlers': 2,
-                                                           'ppapi_broker': 2, 'automatic_downloads': 2,
-                                                           'push_messaging': 2, 'ssl_cert_decisions': 2,
-                                                           'metro_switch_to_desktop': 2,
-                                                           'app_banner': 2,
-                                                           'site_engagement': 2,
-                                                           'durable_storage': 2}
+                "profile.default_content_setting_values": {
+                    "images": 2,
+                    "geolocation": 2,
+                    "notifications": 2,
+                    "auto_select_certificate": 2,
+                    "fullscreen": 2,
+                    "mouselock": 2,
+                    "media_stream": 2,
+                    "media_stream_mic": 2,
+                    "media_stream_camera": 2,
+                    "protocol_handlers": 2,
+                    "ppapi_broker": 2,
+                    "automatic_downloads": 2,
+                    "push_messaging": 2,
+                    "ssl_cert_decisions": 2,
+                    "metro_switch_to_desktop": 2,
+                    "app_banner": 2,
+                    "site_engagement": 2,
+                    "durable_storage": 2,
+                },
             },
         )
 
